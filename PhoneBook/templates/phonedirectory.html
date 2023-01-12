@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href= {% static 'css/phonedirectory_style.css' %}  />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <title>PhoneBook</title>
+  </head>
+
+  <body>
+    <form action="/directory" method="post">
+      <header>
+        <span> <h1>PhoneBook</h1> </span><img src="{% static 'images/phone icon.png' %}"
+        alt="icon" width=150px id="icon">
+      </header>
+      <br /><br />
+      <nav>
+        <span><a href="/" id="home">Home</a></span
+        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <!-- <span><div id="v1"></div></span> -->
+
+        <span><a href="/contacts" class="links">Contacts</a></span
+        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span
+          ><a href="/create"
+            >Create Contact</a
+          ></span
+        >
+      </nav>
+      <br />
+      <main>
+        <br><br><br>
+        <form method="GET" action = "">
+          <table>
+            <tr>
+              <th>S.no</th>
+              <th>First Name</th>
+              <th>Middle Name</th>
+              <th>Last Name</th>
+              <th>Nickname</th>
+              <th>Blood Group</th>
+              <th>Mobile No.</th>
+              <th>Work No.</th>
+              <th>Email</th>
+              <th>Home Address</th>
+              <th>Work Address</th>
+              <th>Birthday</th>
+              <th>Anniversary</th>
+            </tr>
+            {%for item in contact%}
+              <tr>
+                <td>
+                  {{ forloop.counter }}
+                </td>
+                <td>
+                  {%if item.firstName%}
+                  {{item.firstName}}
+                  {%endif%}
+                </td>
+                <td>
+                  {%if item.middleName%}
+                  {{item.middleName}}
+                  {%endif%}
+                </td>
+                <td>
+                  {%if item.lastName%}
+                  {{item.lastName}}
+                  {%endif%}
+                </td>
+                <td>
+                  {%if item.nickName%}
+                  {{item.nickName}}
+                  {%endif%}
+                </td>
+                <td>
+                  {%if item.bloodgroup%}
+                  {{item.bloodgroup}}
+                  {%endif%}
+                </td>
+                <td>
+                  {%if item.phoneno%}
+                  {{item.phoneno}}
+                  {%endif%}
+                </td>
+                <td>
+                  {%if item.workno%}
+                  {{item.workno}}
+                  {%endif%}
+                </td>
+                <td>
+                  {%if item.email%}
+                  {{item.email}}
+                  {%endif%}
+                </td>
+                <td>
+                  {% if item.hstreet %}
+                  {{item.hstreet}}, {{item.hcity}}, {{item.hstate}}, {{item.hcountry}} - {{item.hpostcode}}
+                  {%endif%}
+                </td>
+                <td>
+                  {% if item.wstreet %} 
+                  {{item.wstreet}}, {{item.wcity}}, {{item.wstate}}, {{item.wcountry}} - {{item.wpostcode}},
+                  {% endif %}
+                </td>
+                <td>
+                  {%if item.birthday%}
+                  {{item.birthday}}
+                  {%endif%}
+                </td>
+                <td>
+                  {%if item.anniversary%}
+                  {{item.anniversary}}
+                  {%endif%}
+                </td>        
+              </tr>
+            {% endfor %}
+          </table>
+        </form>        
+      </main>
+    </form>
+    <script></script>
+  </body>
+</html>
